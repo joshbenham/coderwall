@@ -13,10 +13,10 @@ Instructions
 ------------
 ```sh
 # grab the repo
-git clone git://github.com/joshbenham/coderwall
+$ git clone git://github.com/joshbenham/coderwall
 
 # symlink it to your bin directory
-ln -s coderwall/coderwall_r ~/bin/coderwall
+$ ln -s coderwall/coderwall_r ~/bin/coderwall
 ```
 
 Also make sure that your ~/bin directory is in your environment path.
@@ -26,5 +26,5 @@ Usage
 
 ```sh
 # check to see what statistics joshbenham has
-coderwall joshbenham
+$ coderwall joshbenham
 ```
