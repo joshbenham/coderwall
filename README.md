@@ -2,7 +2,6 @@ coderwall
 ==========
 
 [Josh Benham](http://joshbenham.net)'s CoderWall command line interface to retrieve users statistics
-[![Build Status](https://secure.travis-ci.org/joshbenham/coderwall.png?branch=master)](http://travis-ci.org/joshbenham/coderwall)
 
 Overview
 --------
