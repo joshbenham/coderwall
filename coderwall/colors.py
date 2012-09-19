@@ -3,11 +3,6 @@
 from clint.textui import colored
 
 
-def p(s):
-    """Color: Primary"""
-    return colored.clean(s)
-
-
-def s(s):
-    """Color: Secondary"""
+def cyan(s):
+    """Color: Cyan"""
     return colored.cyan(s)

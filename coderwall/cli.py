@@ -9,36 +9,32 @@ CLI for coderwall
 
 import sys
 from clint import args
-from clint.textui import colored, indent, puts
-from coderwall.coderwall import CoderWall, CoderWall_UserNotFoundError
+from clint.textui import indent, puts
 from requests.exceptions import ConnectionError
 
+from user import User, User_UserNotFoundError
+from colors import cyan
+
+
 def main():
-  if len(args) != 1:
-    puts(_p('Usage') + _s(': ') + _p('coderwall ') + _s('<') + _p('username') + _s('>'))
-    sys.exit(1)
+    if len(args) != 1:
+        puts('Usage' + cyan(': ') + 'coderwall ' + cyan('<') + 'username' + cyan('>'))
+        sys.exit(1)
 
-  try:
-    coderwall = CoderWall(args.get(0))
-  except ConnectionError:
-    puts(_p('Error') + _s(': ') + _p('There seems to be a problem with the internet'))
-    sys.exit(1)
-  except CoderWall_UserNotFoundError:
-    puts(_p('Error') + _s(': ') + _p('%s does not seem to be a CoderWall user' % (args.get(0))))
-    sys.exit(1)
+    try:
+        coderwall = User(args.get(0))
+    except ConnectionError:
+        puts('Error' + cyan(': ') + 'There seems to be a problem with the internet')
+        sys.exit(1)
+    except User_UserNotFoundError:
+        puts('Error' + cyan(': ') + '%s does not seem to be a CoderWall user' % (args.get(0)))
+        sys.exit(1)
 
-  user = coderwall.user
-  puts(_p(user.get('name')) + _s(' (') + _p(user.get('username')) + _s('), ') + _p(user.get('location')) + _s(',') + _p(' Endorsed ') + _s(str(user.get('endorsements'))) + _p(' times'))
-  
-  puts(_p('Badges') + _s(':'))
-  with indent(3):
-    for badge in user.get('badges'):
-      puts('%s%s%s %s' % (_s('('), _p(badge['name']), _s(')'), _p(badge['description'])))
+    user = coderwall.user
+    puts(user.get('name') + cyan(' (') + user.get('username') + cyan('), ') +
+        user.get('location') + cyan(',') + ' Endorsed ' + cyan(str(user.get('endorsements'))) + ' times')
 
-# Color: Primary
-def _p(s):
-  return colored.clean(s)
-
-# Color: Secondary
-def _s(s):
-  return colored.cyan(s)
+    puts('Badges' + cyan(':'))
+    with indent(3):
+        for badge in user.get('badges'):
+            puts('%s%s%s %s' % (cyan('('), badge['name'], cyan(')'), badge['description']))
