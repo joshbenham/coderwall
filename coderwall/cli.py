@@ -10,10 +10,10 @@ CLI for coderwall
 import sys
 from clint import args
 from clint.textui import indent, puts
+from clint.textui.colored import cyan
 from requests.exceptions import ConnectionError
 
 from user import User, User_UserNotFoundError
-from colors import cyan
 
 
 def main():
